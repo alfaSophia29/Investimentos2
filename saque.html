@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .withdrawal-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .withdrawal-form h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .withdrawal-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .withdrawal-form input[type="text"], 
+        .withdrawal-form input[type="email"], 
+        .withdrawal-form input[type="number"], 
+        .withdrawal-form select {
+          text-align: center;
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .withdrawal-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .withdrawal-form button:hover {
+            background-color: #218838;
+        }
+
+        .method-fields {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="withdrawal-form">
+        <h2>Withdrawal Request</h2>
+        <form id="withdrawalForm">
+            <label for="amount">Amount to Withdraw</label>
+            <input type="number" id="amount" name="amount" required placeholder="Enter amount">
+
+            <label for="method">Withdrawal Method</label>
+            <select id="method" name="method" required>
+                <option value="" disabled selected>Select a method</option>
+                <option value="paypal">PayPal</option>
+                <option value="bank">Bank Transfer</option>
+                <option value="crypto">Cryptocurrency</option>
+            </select>
+
+            <!-- PayPal Fields -->
+            <div class="method-fields" id="paypalFields">
+                <label for="paypal-name">Name</label>
+                <input type="text" id="paypal-name" name="paypal-name" placeholder="Enter your name">
+
+                <label for="paypal-email">PayPal Email</label>
+                <input type="email" id="paypal-email" name="paypal-email" placeholder="Enter your PayPal email">
+            </div>
+
+            <!-- Bank Transfer Fields -->
+            <div class="method-fields" id="bankFields">
+                <label for="bank-name">Name</label>
+                <input type="text" id="bank-name" name="bank-name" placeholder="Enter your name">
+
+                <label for="bank-bank-name">Bank Name</label>
+                <input type="text" id="bank-bank-name" name="bank-bank-name" placeholder="Enter bank name">
+
+                <label for="bank-iban">IBAN</label>
+                <input type="text" id="bank-iban" name="bank-iban" placeholder="Enter IBAN">
+
+                <label for="bank-swift">SWIFT Code</label>
+                <input type="text" id="bank-swift" name="bank-swift" placeholder="Enter SWIFT code">
+            </div>
+
+            <!-- Cryptocurrency Fields -->
+            <div class="method-fields" id="cryptoFields">
+                <label for="wallet">Cryptocurrency Wallet Code</label>
+                <input type="text" id="wallet" name="wallet" placeholder="Paste your wallet code here">
+            </div>
+
+            <button type="submit">Submit Withdrawal</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('method').addEventListener('change', function () {
+            const selectedMethod = this.value;
+
+            document.querySelectorAll('.method-fields').forEach(field => {
+                field.style.display = 'none';
+            });
+
+            if (selectedMethod === 'paypal') {
+                document.getElementById('paypalFields').style.display = 'block';
+            } else if (selectedMethod === 'bank') {
+                document.getElementById('bankFields').style.display = 'block';
+            } else if (selectedMethod === 'crypto') {
+                document.getElementById('cryptoFields').style.display = 'block';
+            }
+        });
+
+        document.getElementById('withdrawalForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const amount = document.getElementById('amount').value;
+            const method = document.getElementById('method').value;
+
+            if (method === 'paypal') {
+                const name = document.getElementById('paypal-name').value;
+                const email = document.getElementById('paypal-email').value;
+
+                if (!name || !email) {
+                    alert('Please fill in all PayPal fields.');
+                    return;
+                }
+            } else if (method === 'bank') {
+                const name = document.getElementById('bank-name').value;
+                const bankName = document.getElementById('bank-bank-name').value;
+                const iban = document.getElementById('bank-iban').value;
+                const swift = document.getElementById('bank-swift').value;
+
+                if (!name || !bankName || !iban || !swift) {
+                    alert('Please fill in all Bank Transfer fields.');
+                    return;
+                }
+            } else if (method === 'crypto') {
+                const walletCode = document.getElementById('wallet').value;
+
+                if (!walletCode) {
+                    alert('Please enter your cryptocurrency wallet code.');
+                    return;
+                }
+            }
+
+            // Handle the submission logic (e.g., API call or form processing)
+            alert(`Withdrawal of $${amount} via ${method} is being processed.`);
+        });
+    </script>
+
+</body>
+</html>

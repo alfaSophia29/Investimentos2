@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Payment Form</title>
+    <link rel="stylesheet" href="stylese.css">
+</head>
+<body>
+    <div class="payment-form-container">
+        <h2>Universal Payment Form</h2>
+        <form id="payment-form">
+            <!-- Customer Information -->
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <!-- Payment Amount -->
+            <div class="form-group">
+                <label for="amount">Payment Amount (USD)</label>
+                <input type="number" id="amount" name="amount" required>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="form-group">
+                <label for="payment-method">Select Payment Method</label>
+                <select id="payment-method" name="payment-method" onchange="showPaymentDetails()" required>
+                    <option value="" disabled selected>Select a Payment Method</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="credit_card">Credit Card</option>
+                    <option value="crypto">Cryptocurrency</option>
+                </select>
+            </div>
+
+            <!-- PayPal Form -->
+            <div id="paypal-details" class="payment-details hidden">
+                <h3>PayPal Payment</h3>
+                <p>You will be redirected to PayPal to complete your payment.</p>
+                <button type="submit">Proceed with PayPal</button>
+            </div>
+
+            <!-- Credit Card Form -->
+            <div id="credit-card-details" class="payment-details hidden">
+                <h3>Credit Card Payment</h3>
+                <div class="form-group">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" name="card-number" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiry-date">Expiry Date</label>
+                    <input type="text" id="expiry-date" name="expiry-date" required placeholder="MM/YY">
+                </div>
+                <div class="form-group">
+                    <label for="cvc">CVC</label>
+                    <input type="text" id="cvc" name="cvc" required>
+                </div>
+                <button type="submit">Pay with Credit Card</button>
+            </div>
+
+            <!-- Cryptocurrency Form -->
+            <div id="crypto-details" class="payment-details hidden">
+                <h3>Cryptocurrency Payment</h3>
+                <div class="form-group">
+                    <label for="crypto-code">Generated Payment Code</label>
+                    <input type="text" id="crypto-code" name="crypto-code" readonly>
+                </div>
+                <p>Copy the code above and use it to complete your payment in your cryptocurrency wallet.</p>
+                <button type="button" onclick="copyCryptoCode()">Copy Code</button>
+            </div>
+
+            <!-- Submit Button -->
+            <div id="submit-button-container">
+                <button type="submit">Submit Payment</button>
+            </div>
+        </form>
+    </div>  
+
+    <script src="scri.js"></script>
+      <script src="script.js"></script>
+</body>
+</html>

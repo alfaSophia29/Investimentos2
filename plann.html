@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Plans</title>
+    <link rel="stylesheet" href="styleee.css">
+</head>
+<body>
+    <div class="investment-plans-container">
+        <h1>Investment Plans</h1>
+        
+        <div class="plan" data-rate="8" data-min="10" data-max="20" data-duration="168">
+            <p>Aluminium: 8% Return (7 Deys Duration)</p>
+            <input type="number" placeholder="Min 10$/Max 20$" class="investment-amount">
+            <button class="invest-button">Invest</button>
+            <p class="result"></p>
+        </div>
+        
+        <div class="plan" data-rate="13" data-min="20" data-max="50" data-duration="350">
+            <p>Bronze 🥉: 13.2% Return (12 Days Duration)</p>
+            <input type="number" placeholder="Min 20$/Max 50$" class="investment-amount">
+            <button class="invest-button">Invest</button>
+            <p class="result"></p>
+        </div>
+        
+        <div class="plan" data-rate="15" data-min="50" data-max="100" data-duration="360">
+            <p>Prata🥈: 16.5 % Return (15 Days Duration)</p>
+            <input type="number" placeholder="Min 50$/Max 100$" class="investment-amount">
+            <button class="invest-button">Invest</button>
+            <p class="result"></p>
+        </div>
+        
+        <div class="plan" data-rate="25" data-min="100" data-max="250" data-duration="720">
+            <p>Diamante 💎: 25% Return (30 Days Duration)</p>
+            <input type="number" placeholder="Min 100$/Max 250$" class="investment-amount">
+            <button class="invest-button">Invest</button>
+            <p class="result"></p>
+        </div>
+        
+                
+        <div class="plan" data-rate="25.5" data-min="200" data-max="450" data-duration="1460">
+            <p>Diamante 💎: 25.5% Return (60 Days Duration)</p>
+            <input type="number" placeholder="Min 200$/Max 450$" class="investment-amount">
+            <button class="invest-button">Invest</button>
+            <p class="result"></p>
+        </div>
+        
+        
+        <div class="plan" data-rate="30" data-min="500" data-max="1000" data-duration="2160">
+            <p>Ouro ♦️ 🥇: 30% Return (90 Days Duration)</p>
+            <input type="number" placeholder="Min 500$/Max 1000$" class="investment-amount">
+            <button class="invest-button">Invest</button>
+            <p class="result"></p>
+        </div>
+
+    </div>
+
+
+    <script>
+        document.querySelectorAll('.invest-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const plan = this.closest('.plan');
+                const rate = parseFloat(plan.getAttribute('data-rate'));
+                const min = parseFloat(plan.getAttribute('data-min'));
+                const max = parseFloat(plan.getAttribute('data-max'));
+                const duration = parseInt(plan.getAttribute('data-duration')); // Duration in hours
+                const amountInput = plan.querySelector('.investment-amount');
+                const amount = parseFloat(amountInput.value);
+
+                const resultParagraph = plan.querySelector('.result');
+                const planKey = `investment-${rate}`; // Unique key based on plan rate
+
+                const now = new Date();
+                const lastInvestment = localStorage.getItem(planKey);
+                
+                if (lastInvestment) {
+                    const lastDate = new Date(lastInvestment);
+                    const hoursPassed = (now - lastDate) / 1000 / 60 / 60;
+                    
+                    if (hoursPassed < duration) {
+                        const hoursRemaining = Math.ceil(duration - hoursPassed);
+                        const daysRemaining = Math.floor(hoursRemaining / 24);
+                        const hoursLeft = hoursRemaining % 24;
+
+                        resultParagraph.textContent = `You have already invested in this plan. Please wait ${daysRemaining} days and ${hoursLeft} hours before reinvesting.`;
+                        resultParagraph.style.color = 'red';
+                        return;
+                    }
+                }
+
+                if (isNaN(amount) || amount < min || amount > max) {
+                    resultParagraph.textContent = `Please enter a valid amount between $${min} and $${max}.`;
+                    resultParagraph.style.color = 'red';
+                } else {
+                    const returnAmount = amount + (amount * rate / 100);
+                    resultParagraph.textContent = `Your return will be $${returnAmount.toFixed(2)}.`;
+                    resultParagraph.style.color = 'green';
+                    localStorage.setItem(planKey, now); // Save the current time of investment
+                }
+            });
+        });
+        
+    </script>    
+
+      <script src="script.js"></script>
+</body>
+</html>

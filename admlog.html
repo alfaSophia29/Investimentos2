@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login ADM</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e3f2fd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    .login-container h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #1e88e5;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #1e88e5;
+    }
+
+    .input-group i {
+      color: #1e88e5;
+      margin-right: 10px;
+    }
+
+    .input-group input {
+      border: none;
+      outline: none;
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .btn {
+      background-color: #1e88e5;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .btn:hover {
+      background-color: #1565c0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <h2>Login do Administrador</h2>
+    <form action="dashboard.html" method="POST">
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" name="username" placeholder="Nome de usuário" required>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="password" placeholder="Senha" required>
+      </div>
+      <button type="submit" class="btn">Entrar</button>
+    </form>
+  </div>
+</body>
+
+</html>

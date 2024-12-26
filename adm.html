@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #007bff;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        .form-group button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .table-responsive {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th,
+        table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        table th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .actions button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .actions button.delete {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+
+        <!-- Formulário para criação de novos planos -->
+        <div class="form-group">
+            <label for="plan-name">Nome do Plano:</label>
+            <input type="text" id="plan-name" placeholder="Ex: Ouro">
+        </div>
+        <div class="form-group">
+            <label for="plan-return">Retorno do Plano (%):</label>
+            <input type="number" id="plan-return" placeholder="Ex: 10">
+        </div>
+        <div class="form-group">
+            <label for="plan-duration">Duração do Plano (dias):</label>
+            <input type="number" id="plan-duration" placeholder="Ex: 30">
+        </div>
+        <div class="form-group">
+            <button id="create-plan-btn">Criar Novo Plano</button>
+        </div>
+
+        <!-- Tabela de Usuários -->
+        <h2>Gerenciar Usuários</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Plano</th>
+                        <th>Depósito</th>
+                        <th>Investimento</th>
+                        <th>IBAN</th>
+                        <th>Swift</th>
+                        <th>Email PayPal</th>
+                        <th>Código Cryptomus</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="users-table">
+                    <!-- Os dados dos usuários serão inseridos aqui dinamicamente -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Formulário de autorização de saque automático -->
+        <h2>Autorizar Saque Automático</h2>
+        <div class="form-group">
+            <label for="user-id">ID do Usuário:</label>
+            <input type="text" id="user-id" placeholder="Ex: 12345">
+        </div>
+        <div class="form-group">
+            <button id="authorize-withdrawal-btn">Autorizar Saque</button>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

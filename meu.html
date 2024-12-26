@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>Dashboard</h1>
+        </div>
+        <div class="stats">
+            <div class="stat">
+                <p>Deposited</p>
+                <p id="deposited" class="value">$0.00</p>
+            </div>
+            <div class="stat">
+                <p>Invested</p>
+                <p id="invested" class="value">$0.00</p>
+            </div>
+            <div class="stat">
+                <p>Daily Return</p>
+                <p id="daily-return" class="value">$0.00</p>
+            </div>
+            <div class="stat">
+                <p>Final Return</p>
+                <p id="final-return" class="value">$0.00</p>
+            </div>
+        </div>
+        <div class="buttons">
+            <a href="pay.html" id="deposit-button">Deposit</a>
+            <a href="saque.html" id="withdraw-button">Withdraw</a>
+        </div>
+        <div class="history">
+            <h2>Investment History</h2>
+            <ul id="history">
+                <!-- History items will be appended here -->
+            </ul>
+        </div>
+    </div>
+
+    
+</body>
+</html>
